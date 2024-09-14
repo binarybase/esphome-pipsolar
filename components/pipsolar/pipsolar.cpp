@@ -949,7 +949,7 @@ void Pipsolar::send_next_poll_() {
     return;
   }
 
-  if(strcmp(this->used_polling_commands_[this->last_polling_command_].command, 'QPGS0') != 0){
+  if(strcmp(this->used_polling_commands_[this->last_polling_command_].command, "QPGS0") != 0){
     ESP_LOGD(TAG, "Skipping command %s", command);
     return 0;
   }
