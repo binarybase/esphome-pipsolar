@@ -553,10 +553,10 @@ void Pipsolar::loop() {
 
         sscanf(
           tmp,                                      // NOLINT
-          "(%*c %*s %*c %*d %*f %*f %*f %*f %*d %*d %*d %*f %*d %*d %*f %*d %*d %*d %*d %*s %*c %*c %*d %*d %*d %*d %*d %f %d",  // NOLINT
+          "(%*c %*s %*c %*d %*f %*f %*f %*f %*d %*d %*d %*f %*d %*d %*f %*d %*d %*d %*d %*s %*c %*c %*d %*d %*d %*d %*d %f %f",  // NOLINT
           &value_pv2_input_voltage_, &value_pv2_input_current_);  // NOLINT
 
-        ESP_LOGD(TAG, "QPGS0 voltage: %f, current: %d", value_pv2_input_voltage_, value_pv2_input_current_);
+        ESP_LOGD(TAG, "QPGS0 voltage: %f, current: %f", value_pv2_input_voltage_, value_pv2_input_current_);
 
         *value_pv2_input_voltage_ = 0;
         *value_pv2_input_current_ = 0;
