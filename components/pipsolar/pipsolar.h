@@ -50,9 +50,9 @@ struct PollingCommand {
 
 #define PIPSOLAR_SENSOR(name, polling_command, value_type) \
   PIPSOLAR_VALUED_ENTITY_(sensor::Sensor, name, polling_command, value_type)
-//#define PIPSOLAR_SWITCH(name, polling_command) PIPSOLAR_ENTITY_(switch_::Switch, name, polling_command)
-//#define PIPSOLAR_SELECT(name, polling_command) PIPSOLAR_ENTITY_(pipsolar::PipsolarSelect, name, polling_command)
-//#define PIPSOLAR_VALUED_SELECT(name, polling_command, value_type) \
+#define PIPSOLAR_SWITCH(name, polling_command) PIPSOLAR_ENTITY_(switch_::Switch, name, polling_command)
+#define PIPSOLAR_SELECT(name, polling_command) PIPSOLAR_ENTITY_(pipsolar::PipsolarSelect, name, polling_command)
+#define PIPSOLAR_VALUED_SELECT(name, polling_command, value_type) \
   PIPSOLAR_VALUED_ENTITY_(pipsolar::PipsolarSelect, name, polling_command, value_type)
 #define PIPSOLAR_BINARY_SENSOR(name, polling_command, value_type) \
   PIPSOLAR_VALUED_ENTITY_(binary_sensor::BinarySensor, name, polling_command, value_type)
@@ -99,7 +99,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(dustproof_installed, QPIGS, int)
 
   // QPIRI values
-  /*PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
+  PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(grid_rating_current, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_frequency, QPIRI, float)
@@ -123,7 +123,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(output_mode, QPIRI, int)
   PIPSOLAR_SENSOR(battery_redischarge_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(pv_ok_condition_for_parallel, QPIRI, int)
-  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)*/
+  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)
 
   // QMOD values
   PIPSOLAR_VALUED_TEXT_SENSOR(device_mode, QMOD, char)
@@ -185,7 +185,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
   PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
-  //PIPSOLAR_TEXT_SENSOR(last_qpiri, QPIRI)
+  PIPSOLAR_TEXT_SENSOR(last_qpiri, QPIRI)
   PIPSOLAR_TEXT_SENSOR(last_qmod, QMOD)
   /*PIPSOLAR_TEXT_SENSOR(last_qflag, QFLAG)
   PIPSOLAR_TEXT_SENSOR(last_qpiws, QPIWS)
@@ -199,7 +199,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SWITCH(output_source_priority_battery_switch, QPIRI)
   PIPSOLAR_SWITCH(input_voltage_range_switch, QPIRI)
   PIPSOLAR_SWITCH(pv_ok_condition_for_parallel_switch, QPIRI)
-  PIPSOLAR_SWITCH(pv_power_balance_switch, QPIRI)
+  PIPSOLAR_SWITCH(pv_power_balance_switch, QPIRI)*/
 
   PIPSOLAR_SELECT(output_source_priority_select, QPIRI)
   PIPSOLAR_SELECT(charger_source_priority_select, QPIRI)
@@ -207,8 +207,8 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SELECT(current_max_ac_charging_current_select, QPIRI)
   PIPSOLAR_SELECT(current_max_charging_current_select, QPIRI)
   
-  PIPSOLAR_VALUED_SELECT(charging_discharging_control_select, QBATCD, std::string)
-  */
+  //PIPSOLAR_VALUED_SELECT(charging_discharging_control_select, QBATCD, std::string)
+
 
   void switch_command(const std::string &command);
   void setup() override;
