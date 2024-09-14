@@ -99,7 +99,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(dustproof_installed, QPIGS, int)
 
   // QPIRI values
-  PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
+  /*PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(grid_rating_current, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_frequency, QPIRI, float)
@@ -180,12 +180,12 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   // QBATCD values
   PIPSOLAR_BINARY_SENSOR(discharge_onoff, QBATCD, bool)
   PIPSOLAR_BINARY_SENSOR(discharge_with_standby_onoff, QBATCD, bool)
-  PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD, bool)
+  PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD, bool)*/
 
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
   PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
-  PIPSOLAR_TEXT_SENSOR(last_qpiri, QPIRI)
+  /*PIPSOLAR_TEXT_SENSOR(last_qpiri, QPIRI)
   PIPSOLAR_TEXT_SENSOR(last_qmod, QMOD)
   PIPSOLAR_TEXT_SENSOR(last_qflag, QFLAG)
   PIPSOLAR_TEXT_SENSOR(last_qpiws, QPIWS)
@@ -208,6 +208,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SELECT(current_max_charging_current_select, QPIRI)
   
   PIPSOLAR_VALUED_SELECT(charging_discharging_control_select, QBATCD, std::string)
+  */
 
   void switch_command(const std::string &command);
   void setup() override;
@@ -219,7 +220,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   friend class PipsolarSelect;
   static const size_t PIPSOLAR_READ_BUFFER_LENGTH = 130;  // maximum supported answer length
   static const size_t COMMAND_QUEUE_LENGTH = 10;
-  static const size_t COMMAND_TIMEOUT = 8000;
+  static const size_t COMMAND_TIMEOUT = 5000;
   uint32_t last_poll_ = 0;
   void add_polling_command_(const char *command, ENUMPollingCommand polling_command);
   void empty_uart_buffer_();
