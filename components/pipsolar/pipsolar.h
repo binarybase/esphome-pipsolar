@@ -94,7 +94,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(dustproof_installed, QPIGS, int)
 
   // QPIRI values
-  /*PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
+  PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(grid_rating_current, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_frequency, QPIRI, float)
@@ -118,13 +118,13 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(output_mode, QPIRI, int)
   PIPSOLAR_SENSOR(battery_redischarge_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(pv_ok_condition_for_parallel, QPIRI, int)
-  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)*/
+  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)
 
   // QMOD values
   PIPSOLAR_VALUED_TEXT_SENSOR(device_mode, QMOD, char)
 
   // QFLAG values
-  /*PIPSOLAR_BINARY_SENSOR(silence_buzzer_open_buzzer, QFLAG, int)
+  PIPSOLAR_BINARY_SENSOR(silence_buzzer_open_buzzer, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(overload_bypass_function, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(lcd_escape_to_default, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(overload_restart_function, QFLAG, int)
@@ -175,7 +175,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   // QBATCD values
   PIPSOLAR_BINARY_SENSOR(discharge_onoff, QBATCD, bool)
   PIPSOLAR_BINARY_SENSOR(discharge_with_standby_onoff, QBATCD, bool)
-  PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD, bool)*/
+  PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD, bool)
 
   // QPIGS2 values
   // - currently not working, so workaround is QPGS0
@@ -220,7 +220,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   friend class PipsolarSelect;
   static const size_t PIPSOLAR_READ_BUFFER_LENGTH = 130;  // maximum supported answer length
   static const size_t COMMAND_QUEUE_LENGTH = 10;
-  static const size_t COMMAND_TIMEOUT = 5000;
+  static const size_t COMMAND_TIMEOUT = 8000;
   uint32_t last_poll_ = 0;
   void add_polling_command_(const char *command, ENUMPollingCommand polling_command);
   void empty_uart_buffer_();
