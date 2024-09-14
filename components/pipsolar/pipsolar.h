@@ -24,7 +24,7 @@ enum ENUMPollingCommand {
   POLLING_QT = 6,
   POLLING_QMN = 7,
   POLLING_QBATCD = 8,
-  POLLING_QPGS = 9,
+  POLLING_Q1 = 9,
 };
 struct PollingCommand {
   uint8_t *command;
@@ -180,9 +180,9 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   // QPIGS2 values
   // - currently not working, so workaround is QPGS0
 
-  PIPSOLAR_SENSOR(pv2_input_current, QPGS, float)
-  PIPSOLAR_SENSOR(pv2_input_voltage, QPGS, float)
-  PIPSOLAR_SENSOR(pv2_charging_power, QPGS, int)
+  PIPSOLAR_SENSOR(pv2_input_current, Q1, float)
+  PIPSOLAR_SENSOR(pv2_input_voltage, Q1, float)
+  PIPSOLAR_SENSOR(pv2_charging_power, Q1, int)
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
   PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
@@ -193,7 +193,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_TEXT_SENSOR(last_qt, QT)
   PIPSOLAR_TEXT_SENSOR(last_qmn, QMN)
   PIPSOLAR_TEXT_SENSOR(last_qbatcd, QBATCD)
-  PIPSOLAR_TEXT_SENSOR(last_qpgs, QPGS)
+  PIPSOLAR_TEXT_SENSOR(last_q1, Q1)
 
   PIPSOLAR_SWITCH(output_source_priority_utility_switch, QPIRI)
   PIPSOLAR_SWITCH(output_source_priority_solar_switch, QPIRI)
