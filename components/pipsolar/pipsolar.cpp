@@ -1002,8 +1002,8 @@ void Pipsolar::dump_config() {
 void Pipsolar::update() {}
 
 void Pipsolar::add_polling_command_(const char *command, ENUMPollingCommand polling_command) {
-  // add only QPIGS2
-  if(strcmp(command, "QPIGS2") != 0)
+  // add only QPIGS2 and QPIGS
+  if(!(strcmp(command, "QPIGS2") == 0 || strcmp(command, "QPIGS") == 0))
     return;
   
   for (auto &used_polling_command : this->used_polling_commands_) {
