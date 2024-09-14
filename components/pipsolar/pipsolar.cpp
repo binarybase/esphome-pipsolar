@@ -461,6 +461,18 @@ void Pipsolar::loop() {
           this->charging_discharging_control_select_->map_and_publish(value_charging_discharging_control_select_);
         }
         this->state_ = STATE_IDLE;
+        break;
+      case POLLING_QPGS0:
+        if (this->pv2_input_current_) {
+          this->pv2_input_current_->publish_state(value_pv2_input_current_);
+        }
+        if (this->pv2_input_voltage_) {
+          this->pv2_input_voltage_->publish_state(value_pv2_input_voltage_);
+        }
+        if (this->pv2_charging_power_) {
+          this->pv2_charging_power_->publish_state(value_pv2_charging_power_);
+        }
+        this->state_ = STATE_IDLE;
         break;   
       case POLLING_QT:
       case POLLING_QMN:
@@ -529,6 +541,32 @@ void Pipsolar::loop() {
             &value_pv2_input_current_, &value_pv2_input_voltage_, &value_pv2_charging_power_);  // NOLINT
         if (this->last_qpigs2_) {
           this->last_qpigs2_->publish_state(tmp);
+        }
+        this->state_ = STATE_POLL_DECODED;
+        break;
+      case POLLING_QPGS0:
+        ESP_LOGD(TAG, "Decode QPGS0");
+
+      //  (A BBBBBBBBBBBBBB C DD EEE.E FF.FF GGG.G HH.HH IIII JJJJ KKK LL.L
+      //  MMM NNN OOO.O PPP QQQQQ RRRRR SSS b7b6b5b4b3b2b1b0 T U VVV WWW ZZ XX
+      //  YYY OOO.O XX
+
+        sscanf(
+          tmp,                                      // NOLINT
+          "(%*c %*s %*c %*d %*f %*f %*f %*f %*d %*d %*d %*f %*d %*d %*f %*d %*d %*d %*d %*s %*c %*c %*d %*d %*d %*d %*d %f %d",  // NOLINT
+          &value_pv2_input_voltage_, &value_pv2_input_current_);  // NOLINT
+
+        ESP_LOGD(TAG, "QPGS0 voltage: %f, current: %d", value_pv2_input_voltage_, value_pv2_input_current_);
+
+        *value_pv2_input_voltage_ = 0;
+        *value_pv2_input_current_ = 0;
+
+        // calculate charging power (in watts) by multiplying voltage * current from PV2
+        //*value_pv2_charging_power = value_pv2_input_voltage_ * value_pv2_input_current_;
+        *value_pv2_charging_power_ = 0;
+
+        if (this->last_qpgs0_) {
+          this->last_qpgs0_->publish_state(tmp);
         }
         this->state_ = STATE_POLL_DECODED;
         break;
