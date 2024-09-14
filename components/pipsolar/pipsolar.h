@@ -93,15 +93,8 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(switch_on, QPIGS, int)
   PIPSOLAR_BINARY_SENSOR(dustproof_installed, QPIGS, int)
 
-  // QPIGS2 values
-  // - currently not working, so workaround is QPGS0
-
-  PIPSOLAR_SENSOR(pv2_input_current, QPGS0, float)
-  PIPSOLAR_SENSOR(pv2_input_voltage, QPGS0, float)
-  PIPSOLAR_SENSOR(pv2_charging_power, QPGS0, int)
-
   // QPIRI values
-  PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
+  /*PIPSOLAR_SENSOR(grid_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(grid_rating_current, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(ac_output_rating_frequency, QPIRI, float)
@@ -125,13 +118,13 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(output_mode, QPIRI, int)
   PIPSOLAR_SENSOR(battery_redischarge_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(pv_ok_condition_for_parallel, QPIRI, int)
-  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)
+  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)*/
 
   // QMOD values
   PIPSOLAR_VALUED_TEXT_SENSOR(device_mode, QMOD, char)
 
   // QFLAG values
-  PIPSOLAR_BINARY_SENSOR(silence_buzzer_open_buzzer, QFLAG, int)
+  /*PIPSOLAR_BINARY_SENSOR(silence_buzzer_open_buzzer, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(overload_bypass_function, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(lcd_escape_to_default, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(overload_restart_function, QFLAG, int)
@@ -182,7 +175,14 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   // QBATCD values
   PIPSOLAR_BINARY_SENSOR(discharge_onoff, QBATCD, bool)
   PIPSOLAR_BINARY_SENSOR(discharge_with_standby_onoff, QBATCD, bool)
-  PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD, bool)
+  PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD, bool)*/
+
+  // QPIGS2 values
+  // - currently not working, so workaround is QPGS0
+
+  PIPSOLAR_SENSOR(pv2_input_current, QPGS0, float)
+  PIPSOLAR_SENSOR(pv2_input_voltage, QPGS0, float)
+  PIPSOLAR_SENSOR(pv2_charging_power, QPGS0, int)
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
   PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
