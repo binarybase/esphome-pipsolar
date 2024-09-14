@@ -27,6 +27,7 @@ void Pipsolar::loop() {
         // no command send (empty queue) time to poll
         if (millis() - this->last_poll_ > this->update_interval_) {
           this->send_next_poll_();
+          delay(10);
           this->last_poll_ = millis();
         }
         return;
@@ -920,7 +921,6 @@ uint8_t Pipsolar::send_next_command_() {
       byte_command[i] = (uint8_t) this->command_queue_[this->command_queue_position_].at(i);
     }
     this->state_ = STATE_COMMAND;
-    delay(50);
     this->command_start_millis_ = millis();
     this->empty_uart_buffer_();
     this->read_pos_ = 0;
