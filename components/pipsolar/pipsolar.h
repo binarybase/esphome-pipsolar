@@ -185,9 +185,9 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
   PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
-  /*PIPSOLAR_TEXT_SENSOR(last_qpiri, QPIRI)
+  //PIPSOLAR_TEXT_SENSOR(last_qpiri, QPIRI)
   PIPSOLAR_TEXT_SENSOR(last_qmod, QMOD)
-  PIPSOLAR_TEXT_SENSOR(last_qflag, QFLAG)
+  /*PIPSOLAR_TEXT_SENSOR(last_qflag, QFLAG)
   PIPSOLAR_TEXT_SENSOR(last_qpiws, QPIWS)
   PIPSOLAR_TEXT_SENSOR(last_qt, QT)
   PIPSOLAR_TEXT_SENSOR(last_qmn, QMN)
