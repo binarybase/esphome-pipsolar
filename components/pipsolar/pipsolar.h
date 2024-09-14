@@ -61,6 +61,11 @@ struct PollingCommand {
 #define PIPSOLAR_TEXT_SENSOR(name, polling_command) PIPSOLAR_ENTITY_(text_sensor::TextSensor, name, polling_command)
 
 class Pipsolar : public uart::UARTDevice, public PollingComponent {
+  // QPIGS2 values
+  // - currently not working, so workaround is QPGS0
+  PIPSOLAR_SENSOR(pv2_input_current, QPIGS2, float)
+  PIPSOLAR_SENSOR(pv2_input_voltage, QPIGS2, float)
+  PIPSOLAR_SENSOR(pv2_charging_power, QPIGS2, int)
   // QPIGS values
   PIPSOLAR_SENSOR(grid_voltage, QPIGS, float)
   PIPSOLAR_SENSOR(grid_frequency, QPIGS, float)
@@ -177,12 +182,6 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_BINARY_SENSOR(discharge_with_standby_onoff, QBATCD, bool)
   PIPSOLAR_BINARY_SENSOR(charge_onoff, QBATCD, bool)
 
-  // QPIGS2 values
-  // - currently not working, so workaround is QPGS0
-
-  PIPSOLAR_SENSOR(pv2_input_current, QPGS0, float)
-  PIPSOLAR_SENSOR(pv2_input_voltage, QPGS0, float)
-  PIPSOLAR_SENSOR(pv2_charging_power, QPGS0, int)
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
   PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
