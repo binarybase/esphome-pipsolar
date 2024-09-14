@@ -50,9 +50,9 @@ struct PollingCommand {
 
 #define PIPSOLAR_SENSOR(name, polling_command, value_type) \
   PIPSOLAR_VALUED_ENTITY_(sensor::Sensor, name, polling_command, value_type)
-#define PIPSOLAR_SWITCH(name, polling_command) PIPSOLAR_ENTITY_(switch_::Switch, name, polling_command)
-#define PIPSOLAR_SELECT(name, polling_command) PIPSOLAR_ENTITY_(pipsolar::PipsolarSelect, name, polling_command)
-#define PIPSOLAR_VALUED_SELECT(name, polling_command, value_type) \
+//#define PIPSOLAR_SWITCH(name, polling_command) PIPSOLAR_ENTITY_(switch_::Switch, name, polling_command)
+//#define PIPSOLAR_SELECT(name, polling_command) PIPSOLAR_ENTITY_(pipsolar::PipsolarSelect, name, polling_command)
+//#define PIPSOLAR_VALUED_SELECT(name, polling_command, value_type) \
   PIPSOLAR_VALUED_ENTITY_(pipsolar::PipsolarSelect, name, polling_command, value_type)
 #define PIPSOLAR_BINARY_SENSOR(name, polling_command, value_type) \
   PIPSOLAR_VALUED_ENTITY_(binary_sensor::BinarySensor, name, polling_command, value_type)
@@ -123,12 +123,12 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(output_mode, QPIRI, int)
   PIPSOLAR_SENSOR(battery_redischarge_voltage, QPIRI, float)
   PIPSOLAR_SENSOR(pv_ok_condition_for_parallel, QPIRI, int)
-  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)
+  PIPSOLAR_SENSOR(pv_power_balance, QPIRI, int)*/
 
   // QMOD values
   PIPSOLAR_VALUED_TEXT_SENSOR(device_mode, QMOD, char)
 
-  // QFLAG values
+  /*// QFLAG values
   PIPSOLAR_BINARY_SENSOR(silence_buzzer_open_buzzer, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(overload_bypass_function, QFLAG, int)
   PIPSOLAR_BINARY_SENSOR(lcd_escape_to_default, QFLAG, int)
