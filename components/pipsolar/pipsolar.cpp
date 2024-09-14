@@ -462,7 +462,7 @@ void Pipsolar::loop() {
         }
         this->state_ = STATE_IDLE;
         break;
-      case POLLING_QPI:
+      case POLLING_QPGS:
         if (this->pv2_input_current_) {
           this->pv2_input_current_->publish_state(value_pv2_input_current_);
         }
@@ -544,8 +544,8 @@ void Pipsolar::loop() {
         }
         this->state_ = STATE_POLL_DECODED;
         break;
-      case POLLING_QPI:
-        ESP_LOGD(TAG, "Decode QPI");
+      case POLLING_QPGS:
+        ESP_LOGD(TAG, "Decode QPGS");
 
       //  (A BBBBBBBBBBBBBB C DD EEE.E FF.FF GGG.G HH.HH IIII JJJJ KKK LL.L
       //  MMM NNN OOO.O PPP QQQQQ RRRRR SSS b7b6b5b4b3b2b1b0 T U VVV WWW ZZ XX
@@ -565,8 +565,8 @@ void Pipsolar::loop() {
         //*value_pv2_charging_power = value_pv2_input_voltage_ * value_pv2_input_current_;
         this->value_pv2_charging_power_ = 0.0f;
 
-        if (this->last_qpi_) {
-          this->last_qpi_->publish_state(tmp);
+        if (this->last_qpgs_) {
+          this->last_qpgs_->publish_state(tmp);
         }
         this->state_ = STATE_POLL_DECODED;
         break;
@@ -1003,7 +1003,7 @@ void Pipsolar::update() {}
 
 void Pipsolar::add_polling_command_(const char *command, ENUMPollingCommand polling_command) {
   // add only QPIGS2 and QPIGS
-  if(!(strcmp(command, "QPI") == 0))
+  if(!(strcmp(command, "QPGS") == 0))
     return;
   
   for (auto &used_polling_command : this->used_polling_commands_) {
