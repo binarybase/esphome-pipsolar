@@ -912,8 +912,15 @@ uint8_t Pipsolar::check_incoming_crc_() {
 // send next command used
 uint8_t Pipsolar::send_next_command_() {
   uint16_t crc16;
+
   if (this->command_queue_[this->command_queue_position_].length() != 0) {
     const char *command = this->command_queue_[this->command_queue_position_].c_str();
+
+    if(strcmp(command, 'QPGS0') !== 0){
+      ESP_LOGD(TAG, "Skipping command %s", command);
+      return 0;
+    }
+
     uint8_t byte_command[16];
     uint8_t length = this->command_queue_[this->command_queue_position_].length();
     for (uint8_t i = 0; i < length; i++) {
@@ -1016,6 +1023,18 @@ void Pipsolar::add_polling_command_(const char *command, ENUMPollingCommand poll
       return;
     }
   }
+}
+
+uint16_t Pipsolar::pipsolar_crc(uint8_t *msg, uint8_t len) {
+  uint16_t crc = crc16be(msg, len);
+  uint8_t crc_low = crc & 0xff;
+  uint8_t crc_high = crc >> 8;
+  if (crc_low == 0x28 || crc_low == 0x0d || crc_low == 0x0a)
+    crc_low++;
+  if (crc_high == 0x28 || crc_high == 0x0d || crc_high == 0x0a)
+    crc_high++;
+  crc = (crc_high << 8) | crc_low;
+  return crc;
 }
 
 uint16_t Pipsolar::cal_crc_half_(uint8_t *msg, uint8_t len) {
