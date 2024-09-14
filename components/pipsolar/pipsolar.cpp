@@ -916,11 +916,6 @@ uint8_t Pipsolar::send_next_command_() {
   if (this->command_queue_[this->command_queue_position_].length() != 0) {
     const char *command = this->command_queue_[this->command_queue_position_].c_str();
 
-    if(strcmp(command, 'QPGS0') !== 0){
-      ESP_LOGD(TAG, "Skipping command %s", command);
-      return 0;
-    }
-
     uint8_t byte_command[16];
     uint8_t length = this->command_queue_[this->command_queue_position_].length();
     for (uint8_t i = 0; i < length; i++) {
@@ -953,6 +948,12 @@ void Pipsolar::send_next_poll_() {
     // no command specified
     return;
   }
+
+  if(strcmp(this->used_polling_commands_[this->last_polling_command_].command, 'QPGS0') != 0){
+    ESP_LOGD(TAG, "Skipping command %s", command);
+    return 0;
+  }
+
   this->state_ = STATE_POLL;
   this->command_start_millis_ = millis();
   this->empty_uart_buffer_();
