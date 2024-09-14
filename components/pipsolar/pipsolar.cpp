@@ -558,12 +558,12 @@ void Pipsolar::loop() {
 
         ESP_LOGD(TAG, "QPGS0 voltage: %f, current: %f", value_pv2_input_voltage_, value_pv2_input_current_);
 
-        *value_pv2_input_voltage_ = 0;
-        *value_pv2_input_current_ = 0;
+        value_pv2_input_voltage_ = 0.0f;
+        value_pv2_input_current_ = 0.0f;
 
         // calculate charging power (in watts) by multiplying voltage * current from PV2
         //*value_pv2_charging_power = value_pv2_input_voltage_ * value_pv2_input_current_;
-        *value_pv2_charging_power_ = 0;
+        value_pv2_charging_power_ = 0.0f;
 
         if (this->last_qpgs0_) {
           this->last_qpgs0_->publish_state(tmp);
