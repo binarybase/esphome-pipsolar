@@ -180,9 +180,9 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   // QPIGS2 values
   // - currently not working, so workaround is QPGS0
 
-  PIPSOLAR_SENSOR(pv2_input_current, QPIGS2, float)
-  PIPSOLAR_SENSOR(pv2_input_voltage, QPIGS2, float)
-  PIPSOLAR_SENSOR(pv2_charging_power, QPIGS2, int)
+  PIPSOLAR_SENSOR(pv2_input_current, QPGS0, float)
+  PIPSOLAR_SENSOR(pv2_input_voltage, QPGS0, float)
+  PIPSOLAR_SENSOR(pv2_charging_power, QPGS0, int)
 
   PIPSOLAR_TEXT_SENSOR(last_qpigs, QPIGS)
   PIPSOLAR_TEXT_SENSOR(last_qpigs2, QPIGS2)
