@@ -305,7 +305,7 @@ void Pipsolar::loop() {
         }
         this->state_ = STATE_IDLE;
         break;
-      case POLLING_QFLAG:
+      /*case POLLING_QFLAG:
         if (this->silence_buzzer_open_buzzer_) {
           this->silence_buzzer_open_buzzer_->publish_state(value_silence_buzzer_open_buzzer_);
         }
@@ -461,7 +461,7 @@ void Pipsolar::loop() {
           this->charging_discharging_control_select_->map_and_publish(value_charging_discharging_control_select_);
         }
         this->state_ = STATE_IDLE;
-        break;
+        break;*/
       case POLLING_QPGS0:
         if (this->pv2_input_current_) {
           this->pv2_input_current_->publish_state(value_pv2_input_current_);
@@ -578,7 +578,7 @@ void Pipsolar::loop() {
         }
         this->state_ = STATE_POLL_DECODED;
         break;
-      case POLLING_QFLAG:
+      /*case POLLING_QFLAG:
         ESP_LOGD(TAG, "Decode QFLAG");
         // result like:"(EbkuvxzDajy"
         // get through all char: ignore first "(" Enable flag on 'E', Disable on 'D') else set the corresponding value
@@ -814,7 +814,7 @@ void Pipsolar::loop() {
           this->last_qbatcd_->publish_state(tmp);
         }
         this->state_ = STATE_POLL_DECODED;
-        break;
+        break;*/
       default:
         this->state_ = STATE_IDLE;
         break;
