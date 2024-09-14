@@ -27,7 +27,6 @@ void Pipsolar::loop() {
         // no command send (empty queue) time to poll
         if (millis() - this->last_poll_ > this->update_interval_) {
           this->send_next_poll_();
-          delay(10);
           this->last_poll_ = millis();
         }
         return;
